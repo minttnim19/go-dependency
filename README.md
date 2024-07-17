@@ -4,5 +4,10 @@ This repository contains a Docker Compose configuration to set up a MongoDB data
 
 To start your dependency in the dev profile, simply run:
 ```sh
-docker-compose up -d --build
+> docker-compose up -d --build
+```
+
+Mongodb express URL:
+```sh
+> http://localhost:8081/
 ```
