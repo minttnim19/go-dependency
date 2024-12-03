@@ -12,7 +12,7 @@ services:
     networks:
       - go-network
 
-  mongoex:
+  mongo-express:
     image: mongo-express:latest
     container_name: mongo-express
     restart: always
@@ -40,10 +40,53 @@ services:
     networks:
       - go-network
 
+  redisinsight:
+    image: redislabs/redisinsight:latest
+    container_name: redisinsight
+    restart: always
+    ports:
+      - 8001:8001
+    environment:
+      - REDIS_OSS_CLUSTER=false
+    depends_on:
+      - redis
+    networks:
+      - go-network
+  
+  postgres:
+    image: postgres:14.9
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=shk,g-hkot0Ut
+      - POSTGRES_DB=tlkr
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - go-network
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=shk,g-hkot0Ut
+    depends_on:
+      - postgres
+    networks:
+      - go-network
+
 volumes:
   mongo-data:
     driver: local
   redis-data:
+    driver: local
+  postgres-data:
     driver: local
 
 networks:

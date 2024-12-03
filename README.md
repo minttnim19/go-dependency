@@ -18,3 +18,8 @@ Mongodb Express Credentials:
 
 - Username: admin
 - Password: shk,g-hkot0Ut
+
+Pg Admin Credentials:
+
+- Username: admin@example.com
+- Password: shk,g-hkot0Ut
